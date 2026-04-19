@@ -508,6 +508,9 @@ function generateOfflineResponse(activity, day, previousOutput, language) {
   };
 }
 
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 // ─── Anthropic API Prompt (used when API key is available) ───────────────────
 
 const SYSTEM_PROMPT = `You are Voice2Venture — a friendly Business Growth Coach AI. You help small business owners in India grow their business step by step.
