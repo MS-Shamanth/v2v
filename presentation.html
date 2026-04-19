@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BizEvolve — Varroc Eureka Challenge Presentation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --slide-w: 1024px;
+      --slide-h: 576px;
+      --bg: #ffffff;
+      --header-border: #d0d0d0;
+      --text-dark: #1a1a1a;
+      --text-body: #2d2d2d;
+      --text-muted: #666666;
+      --accent-green: #2ecc40;
+      --accent-purple: #7c5cfc;
+      --accent-coral: #fc5c7d;
+      --accent-blue: #3b82f6;
+      --accent-teal: #14b8a6;
+      --accent-amber: #f59e0b;
+      --gradient-1: linear-gradient(135deg, #7c5cfc, #fc5c7d);
+      --gradient-2: linear-gradient(135deg, #3b82f6, #14b8a6);
+      --gradient-3: linear-gradient(135deg, #f59e0b, #ef4444);
+      --gradient-4: linear-gradient(135deg, #14b8a6, #2ecc40);
+      --gradient-5: linear-gradient(135deg, #8b5cf6, #3b82f6);
+      --sans: 'Inter', -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    body {
+      background: #e8e8ec;
+      font-family: var(--sans);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      gap: 48px;
+    }
+
+    .slide-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: #888;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: -36px;
+    }
+
+    .slide {
+      width: var(--slide-w);
+      height: var(--slide-h);
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* ── Header Bar ── */
+    .slide-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 32px 12px;
+      border-bottom: 2px solid var(--header-border);
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .eureka-logo {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .eureka-logo .bulb {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .eureka-logo .bulb svg { width: 32px; height: 32px; }
+
+    .eureka-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .eureka-text .varroc {
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #333;
+      text-transform: uppercase;
+    }
+
+    .eureka-text .eureka {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #d32f2f;
+      font-style: italic;
+      letter-spacing: -0.02em;
+    }
+
+    .eureka-text .challenge {
+      font-size: 0.45rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: #333;
+      text-transform: uppercase;
+    }
+
+    .slide-title {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--text-dark);
+      letter-spacing: -0.02em;
+      flex: 1;
+      text-align: left;
+      margin-left: 14px;
+    }
+
+    .varroc-v {
+      width: 44px;
+      height: 44px;
+    }
+
+    .varroc-v svg { width: 44px; height: 44px; }
+
+    /* ── Footer Bar ── */
+    .slide-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 32px 10px;
+    }
+
+    .brilliance {
+      font-size: 0.7rem;
+      font-weight: 900;
+      color: var(--text-dark);
+      letter-spacing: 0.04em;
+    }
+
+    .footer-line {
+      flex: 1;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, #bbb, transparent);
+      margin: 0 20px;
+    }
+
+    .slide-num {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* ── Content Area ── */
+    .slide-content {
+      padding: 20px 36px 48px;
+      height: calc(var(--slide-h) - 68px - 36px);
+      overflow: hidden;
+    }
+
+    /* ═══════════════════════════════════════════
+       S L I D E  1 4  –  Problem Statement
+    ═══════════════════════════════════════════ */
+
+    .s14-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      height: 100%;
+    }
+
+    .s14-left {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .s14-overview {
+      background: linear-gradient(135deg, #f0ecff, #fff0f3);
+      border-radius: 12px;
+      padding: 16px 18px;
+      border-left: 4px solid var(--accent-purple);
+    }
+
+    .s14-overview h3 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent-purple);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .s14-overview p {
+      font-size: 0.78rem;
+      line-height: 1.55;
+      color: var(--text-body);
+    }
+
+    .s14-uniqueness {
+      background: linear-gradient(135deg, #e8faf0, #f0fffa);
+      border-radius: 12px;
+      padding: 16px 18px;
+      border-left: 4px solid var(--accent-teal);
+      flex: 1;
+    }
+
+    .s14-uniqueness h3 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .s14-usp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .s14-usp-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.74rem;
+      line-height: 1.45;
+      color: var(--text-body);
+    }
+
+    .s14-usp-list li .icon {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      margin-top: 1px;
+    }
+
+    .s14-right {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .s14-flow-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 2px;
+    }
+
+    .s14-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      flex: 1;
+    }
+
+    .s14-flow-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+    }
+
+    .s14-flow-num {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--gradient-1);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .s14-flow-box {
+      flex: 1;
+      background: #f8f8fc;
+      border: 1px solid #e8e8f0;
+      border-radius: 8px;
+      padding: 8px 12px;
+    }
+
+    .s14-flow-box strong {
+      font-size: 0.72rem;
+      color: var(--text-dark);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .s14-flow-box span {
+      font-size: 0.66rem;
+      color: var(--text-muted);
+      font-family: var(--mono);
+    }
+
+    .s14-flow-arrow {
+      width: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ccc;
+      font-size: 0.8rem;
+      margin-left: 0px;
+    }
+
+    /* ═══════════════════════════════════════════
+       S L I D E  1 5  –  Design Details
+    ═══════════════════════════════════════════ */
+
+    .s15-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      height: 100%;
+    }
+
+    .s15-card {
+      background: #fafafe;
+      border: 1px solid #ececf4;
+      border-radius: 10px;
+      padding: 14px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .s15-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+
+    .s15-card:nth-child(1)::before { background: var(--gradient-1); }
+    .s15-card:nth-child(2)::before { background: var(--gradient-2); }
+    .s15-card:nth-child(3)::before { background: var(--gradient-3); }
+    .s15-card:nth-child(4)::before { background: var(--gradient-4); }
+    .s15-card:nth-child(5)::before { background: var(--gradient-5); }
+    .s15-card:nth-child(6)::before { background: var(--gradient-1); }
+
+    .s15-card-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .s15-card:nth-child(1) .s15-card-title { color: var(--accent-purple); }
+    .s15-card:nth-child(2) .s15-card-title { color: var(--accent-blue); }
+    .s15-card:nth-child(3) .s15-card-title { color: #ef4444; }
+    .s15-card:nth-child(4) .s15-card-title { color: var(--accent-teal); }
+    .s15-card:nth-child(5) .s15-card-title { color: #8b5cf6; }
+    .s15-card:nth-child(6) .s15-card-title { color: var(--accent-purple); }
+
+    .s15-card p, .s15-card li {
+      font-size: 0.7rem;
+      line-height: 1.5;
+      color: var(--text-body);
+    }
+
+    .s15-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .s15-card li::before {
+      content: '→ ';
+      color: #aaa;
+      font-weight: 600;
+    }
+
+    .s15-arch-diagram {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .s15-arch-node {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 0.6rem;
+      font-family: var(--mono);
+      font-weight: 500;
+      color: var(--text-dark);
+      text-align: center;
+    }
+
+    .s15-arch-arrow {
+      color: #bbb;
+      font-size: 0.7rem;
+    }
+
+    .s15-stat {
+      display: flex;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .s15-stat-box {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 6px;
+      padding: 6px 10px;
+      text-align: center;
+      flex: 1;
+    }
+
+    .s15-stat-num {
+      font-size: 1rem;
+      font-weight: 800;
+      background: var(--gradient-2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .s15-stat-label {
+      font-size: 0.55rem;
+      color: var(--text-muted);
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ═══════════════════════════════════════════
+       S L I D E  1 6  –  Risks & Mitigation
+    ═══════════════════════════════════════════ */
+
+    .s16-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      height: 100%;
+    }
+
+    .s16-row {
+      display: grid;
+      grid-template-columns: 1fr 40px 1fr;
+      gap: 0;
+      align-items: stretch;
+    }
+
+    .s16-risk {
+      background: linear-gradient(135deg, #fff5f5, #fff0f3);
+      border: 1px solid #fecaca;
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .s16-risk-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: #dc2626;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .s16-risk p {
+      font-size: 0.72rem;
+      line-height: 1.45;
+      color: var(--text-body);
+    }
+
+    .s16-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+
+    .s16-mitigate {
+      background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+      border: 1px solid #bbf7d0;
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+
+    .s16-mitigate-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: #16a34a;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .s16-mitigate p {
+      font-size: 0.72rem;
+      line-height: 1.45;
+      color: var(--text-body);
+    }
+
+    .s16-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 100px;
+      font-size: 0.58rem;
+      font-weight: 600;
+      font-family: var(--mono);
+      margin-left: 6px;
+    }
+
+    .s16-badge.high { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+    .s16-badge.med { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+
+    /* ═══════════════════════════════════════════
+       S L I D E  1 7  –  Business Potential
+    ═══════════════════════════════════════════ */
+
+    .s17-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      height: 100%;
+    }
+
+    .s17-left {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .s17-market-card {
+      background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+      border: 1px solid #ddd6fe;
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+
+    .s17-market-card h3 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent-purple);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .s17-market-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .s17-stat-item {
+      text-align: center;
+      background: #fff;
+      border-radius: 8px;
+      padding: 10px 8px;
+      border: 1px solid #ede9fe;
+    }
+
+    .s17-stat-val {
+      font-size: 1.3rem;
+      font-weight: 900;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .s17-stat-desc {
+      font-size: 0.58rem;
+      color: var(--text-muted);
+      font-family: var(--mono);
+      margin-top: 2px;
+      line-height: 1.3;
+    }
+
+    .s17-demand-card {
+      background: linear-gradient(135deg, #f0fdfa, #ecfdf5);
+      border: 1px solid #99f6e4;
+      border-radius: 12px;
+      padding: 16px 18px;
+      flex: 1;
+    }
+
+    .s17-demand-card h3 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .s17-demand-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .s17-demand-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.72rem;
+      line-height: 1.4;
+      color: var(--text-body);
+    }
+
+    .s17-demand-list li .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-teal);
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+
+    .s17-right {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .s17-revenue-card {
+      background: linear-gradient(135deg, #fefce8, #fef9c3);
+      border: 1px solid #fde68a;
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+
+    .s17-revenue-card h3 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent-amber);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .s17-rev-streams {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .s17-stream {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .s17-stream-label {
+      font-size: 0.66rem;
+      font-weight: 600;
+      color: var(--text-body);
+      width: 90px;
+      flex-shrink: 0;
+    }
+
+    .s17-bar-bg {
+      flex: 1;
+      height: 16px;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #fde68a;
+    }
+
+    .s17-bar-fill {
+      height: 100%;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 6px;
+      font-size: 0.55rem;
+      font-weight: 700;
+      color: #fff;
+      font-family: var(--mono);
+    }
+
+    .s17-target-card {
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      border: 1px solid #93c5fd;
+      border-radius: 12px;
+      padding: 16px 18px;
+      flex: 1;
+    }
+
+    .s17-target-card h3 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .s17-targets {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .s17-target-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px;
+      background: #fff;
+      border-radius: 6px;
+      border: 1px solid #dbeafe;
+    }
+
+    .s17-target-label {
+      font-size: 0.66rem;
+      font-weight: 600;
+      color: var(--text-body);
+    }
+
+    .s17-target-val {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--accent-blue);
+      font-family: var(--mono);
+    }
+
+    /* ═══════════════════════════════════════════
+       S L I D E  1 8  –  Plan & Budget
+    ═══════════════════════════════════════════ */
+
+    .s18-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 20px;
+      height: 100%;
+    }
+
+    .s18-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .s18-timeline-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent-purple);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .s18-phase {
+      display: flex;
+      align-items: stretch;
+      gap: 12px;
+    }
+
+    .s18-phase-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 20px;
+    }
+
+    .s18-phase-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      border: 3px solid;
+    }
+
+    .s18-phase:nth-child(2) .s18-phase-dot { border-color: var(--accent-purple); background: #f5f3ff; }
+    .s18-phase:nth-child(3) .s18-phase-dot { border-color: var(--accent-blue); background: #eff6ff; }
+    .s18-phase:nth-child(4) .s18-phase-dot { border-color: var(--accent-teal); background: #f0fdfa; }
+    .s18-phase:nth-child(5) .s18-phase-dot { border-color: var(--accent-amber); background: #fffbeb; }
+
+    .s18-phase-connector {
+      width: 2px;
+      flex: 1;
+      min-height: 8px;
+    }
+
+    .s18-phase:nth-child(2) .s18-phase-connector { background: var(--accent-purple); opacity: 0.3; }
+    .s18-phase:nth-child(3) .s18-phase-connector { background: var(--accent-blue); opacity: 0.3; }
+    .s18-phase:nth-child(4) .s18-phase-connector { background: var(--accent-teal); opacity: 0.3; }
+    .s18-phase:nth-child(5) .s18-phase-connector { background: transparent; }
+
+    .s18-phase-content {
+      flex: 1;
+      padding-bottom: 12px;
+    }
+
+    .s18-phase-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .s18-phase-name {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .s18-phase-time {
+      font-size: 0.58rem;
+      font-family: var(--mono);
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 100px;
+      background: #f3f4f6;
+      color: var(--text-muted);
+    }
+
+    .s18-phase-desc {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .s18-right {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .s18-budget-card {
+      background: linear-gradient(135deg, #fefce8, #fef9c3);
+      border: 1px solid #fde68a;
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+
+    .s18-budget-card h3 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent-amber);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .s18-budget-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .s18-budget-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 10px;
+      background: #fff;
+      border-radius: 6px;
+      border: 1px solid #fde68a;
+    }
+
+    .s18-budget-item {
+      font-size: 0.68rem;
+      color: var(--text-body);
+    }
+
+    .s18-budget-cost {
+      font-size: 0.72rem;
+      font-weight: 700;
+      font-family: var(--mono);
+      color: var(--text-dark);
+    }
+
+    .s18-budget-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 10px;
+      background: var(--gradient-3);
+      border-radius: 6px;
+      margin-top: 4px;
+    }
+
+    .s18-budget-total span:first-child {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .s18-budget-total span:last-child {
+      font-size: 0.9rem;
+      font-weight: 900;
+      color: #fff;
+      font-family: var(--mono);
+    }
+
+    .s18-deliver-card {
+      background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+      border: 1px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 16px 18px;
+      flex: 1;
+    }
+
+    .s18-deliver-card h3 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #16a34a;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .s18-deliver-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .s18-deliver-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.68rem;
+      color: var(--text-body);
+      line-height: 1.4;
+    }
+
+    .s18-deliver-list li .check {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #dcfce7;
+      border: 1px solid #bbf7d0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.5rem;
+      color: #16a34a;
+      flex-shrink: 0;
+    }
+
+    /* Print / Export helpers */
+    @media print {
+      body { background: #fff; padding: 0; gap: 0; }
+      .slide-label { display: none; }
+      .slide { box-shadow: none; page-break-after: always; border-radius: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+       SLIDE 14 — Your Selected Problem Statement
+  ══════════════════════════════════════════════════════════════════════════════ -->
+  <div class="slide-label">Slide 14</div>
+  <div class="slide" id="slide-14">
+    <div class="slide-header">
+      <div class="logo-group">
+        <div class="eureka-logo">
+          <div class="bulb">
+            <svg viewBox="0 0 40 40" fill="none">
+              <path d="M20 4C13.4 4 8 9.4 8 16c0 4.2 2.2 7.9 5.5 10 .5.3.5.8.5 1.3V30c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-2.7c0-.5 0-1 .5-1.3C29.8 23.9 32 20.2 32 16c0-6.6-5.4-12-12-12z" fill="#2ecc40"/>
+              <rect x="15" y="32" width="10" height="2" rx="1" fill="#2ecc40"/>
+              <rect x="16" y="35" width="8" height="2" rx="1" fill="#2ecc40"/>
+              <line x1="20" y1="10" x2="20" y2="16" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="14" y1="14" x2="17" y2="17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="26" y1="14" x2="23" y2="17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="eureka-text">
+            <span class="varroc">VARROC</span>
+            <span class="eureka">eureka</span>
+            <span class="challenge">CHALLENGE</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide-title">Your Selected Problem Statement</div>
+      <div class="varroc-v">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="20" fill="#111"/>
+          <path d="M10 12L20 30L30 12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M28 10C30 10 32 12 32 14" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="slide-content">
+      <div class="s14-layout">
+        <div class="s14-left">
+          <div class="s14-overview">
+            <h3>📋 Solution Overview</h3>
+            <p>
+              <strong>BizEvolve</strong> is an AI-powered daily business coaching platform that transforms raw activity logs into a <strong>structured, evolving 6-step business evolution plan</strong>. Unlike static templates, each day's output <em>builds upon the previous day's</em> recommendations — creating a compounding growth trajectory unique to each entrepreneur. The system supports <strong>voice input</strong> in English &amp; Kannada with full offline capability.
+            </p>
+          </div>
+          <div class="s14-uniqueness">
+            <h3>✨ Uniqueness of Solution</h3>
+            <ul class="s14-usp-list">
+              <li><span class="icon" style="background:#f0ecff;color:#7c5cfc;">🧬</span> <strong>Evolution Memory:</strong> AI recalls all prior outputs — zero advice repetition, continuous progression</li>
+              <li><span class="icon" style="background:#fff0f3;color:#fc5c7d;">🤖</span> <strong>Dual Engine:</strong> Online (Claude AI) + Offline (built-in coaching NLP) — works anywhere, anytime</li>
+              <li><span class="icon" style="background:#e8faf0;color:#14b8a6;">🎙</span> <strong>Multilingual Voice:</strong> Speak in Kannada or English — breaking language barriers for Tier 2/3 entrepreneurs</li>
+              <li><span class="icon" style="background:#eff6ff;color:#3b82f6;">📈</span> <strong>Context-Aware:</strong> Detects sales, product, marketing, or meeting context in natural language input</li>
+            </ul>
+          </div>
+        </div>
+        <div class="s14-right">
+          <div class="s14-flow-title">⚙️ Process Flow</div>
+          <div class="s14-flow">
+            <div class="s14-flow-step">
+              <div class="s14-flow-num">1</div>
+              <div class="s14-flow-box">
+                <strong>Daily Input</strong>
+                <span>Voice / Text activity log</span>
+              </div>
+            </div>
+            <div class="s14-flow-arrow">↓</div>
+            <div class="s14-flow-step">
+              <div class="s14-flow-num" style="background:var(--gradient-2);">2</div>
+              <div class="s14-flow-box">
+                <strong>Context Detection</strong>
+                <span>NLP analyzes business domain</span>
+              </div>
+            </div>
+            <div class="s14-flow-arrow">↓</div>
+            <div class="s14-flow-step">
+              <div class="s14-flow-num" style="background:var(--gradient-4);">3</div>
+              <div class="s14-flow-box">
+                <strong>Evolution Engine</strong>
+                <span>Claude AI + Previous output merge</span>
+              </div>
+            </div>
+            <div class="s14-flow-arrow">↓</div>
+            <div class="s14-flow-step">
+              <div class="s14-flow-num" style="background:var(--gradient-3);">4</div>
+              <div class="s14-flow-box">
+                <strong>6-Step Plan Output</strong>
+                <span>Actionable, non-repeating steps</span>
+              </div>
+            </div>
+            <div class="s14-flow-arrow">↓</div>
+            <div class="s14-flow-step">
+              <div class="s14-flow-num" style="background:var(--gradient-5);">5</div>
+              <div class="s14-flow-box">
+                <strong>Timeline & Memory</strong>
+                <span>History stored for continuous growth</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="brilliance">BRILLIANCE@SCALE</span>
+      <div class="footer-line"></div>
+      <span class="slide-num">14</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+       SLIDE 15 — Design Details
+  ══════════════════════════════════════════════════════════════════════════════ -->
+  <div class="slide-label">Slide 15</div>
+  <div class="slide" id="slide-15">
+    <div class="slide-header">
+      <div class="logo-group">
+        <div class="eureka-logo">
+          <div class="bulb">
+            <svg viewBox="0 0 40 40" fill="none">
+              <path d="M20 4C13.4 4 8 9.4 8 16c0 4.2 2.2 7.9 5.5 10 .5.3.5.8.5 1.3V30c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-2.7c0-.5 0-1 .5-1.3C29.8 23.9 32 20.2 32 16c0-6.6-5.4-12-12-12z" fill="#2ecc40"/>
+              <rect x="15" y="32" width="10" height="2" rx="1" fill="#2ecc40"/>
+              <rect x="16" y="35" width="8" height="2" rx="1" fill="#2ecc40"/>
+              <line x1="20" y1="10" x2="20" y2="16" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="14" y1="14" x2="17" y2="17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="26" y1="14" x2="23" y2="17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="eureka-text">
+            <span class="varroc">VARROC</span>
+            <span class="eureka">eureka</span>
+            <span class="challenge">CHALLENGE</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide-title">Design Details</div>
+      <div class="varroc-v">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="20" fill="#111"/>
+          <path d="M10 12L20 30L30 12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M28 10C30 10 32 12 32 14" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="slide-content">
+      <div class="s15-layout">
+
+        <!-- Market Research -->
+        <div class="s15-card">
+          <div class="s15-card-title">📊 Market Research</div>
+          <ul>
+            <li>680M+ SMEs globally lack affordable AI coaching — $15.4B market by 2028</li>
+            <li>78% of micro-business owners in India rely on generic YouTube/Google advice</li>
+            <li>Only 3% of business coaching tools support regional languages</li>
+          </ul>
+          <div class="s15-stat">
+            <div class="s15-stat-box">
+              <div class="s15-stat-num">680M+</div>
+              <div class="s15-stat-label">GLOBAL SMEs</div>
+            </div>
+            <div class="s15-stat-box">
+              <div class="s15-stat-num">$15.4B</div>
+              <div class="s15-stat-label">MARKET 2028</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- System Architecture -->
+        <div class="s15-card">
+          <div class="s15-card-title">🛠 System Architecture</div>
+          <div class="s15-arch-diagram">
+            <div class="s15-arch-node" style="background:#f0ecff;">User<br>Input</div>
+            <div class="s15-arch-arrow">→</div>
+            <div class="s15-arch-node" style="background:#fff0f3;">Express<br>Server</div>
+            <div class="s15-arch-arrow">→</div>
+            <div class="s15-arch-node" style="background:#e8faf0;">Claude AI<br>/ Offline</div>
+            <div class="s15-arch-arrow">→</div>
+            <div class="s15-arch-node" style="background:#eff6ff;">6-Step<br>Output</div>
+          </div>
+          <ul style="margin-top:10px;">
+            <li>Express.js backend proxies API securely — keys never exposed</li>
+            <li>Graceful fallback: offline NLP engine generates plans without internet</li>
+            <li>localStorage persistence — zero database dependency for MVP</li>
+          </ul>
+        </div>
+
+        <!-- Working Principle -->
+        <div class="s15-card">
+          <div class="s15-card-title">⚡ Working Principle</div>
+          <ul>
+            <li>Regex-based NLP classifies input into: Sales, Product, Marketing, Meetings</li>
+            <li>Context-weighted step selection from curated 34-module knowledge bank</li>
+            <li>Deterministic hashing ensures variety without true randomness</li>
+            <li>Previous output injected into AI prompt — guarantees evolution continuity</li>
+          </ul>
+        </div>
+
+        <!-- Benchmarking -->
+        <div class="s15-card">
+          <div class="s15-card-title">📐 Benchmarking</div>
+          <ul>
+            <li><strong>vs. ChatGPT:</strong> Structured 6-step format with memory — not open-ended chat</li>
+            <li><strong>vs. Notion AI:</strong> Domain-specific business coaching, not general writing</li>
+            <li><strong>vs. Human Coach:</strong> ₹0 cost vs ₹5,000–50,000/session, available 24/7</li>
+            <li><strong>vs. BizPlan Tools:</strong> Daily evolving plans vs. one-time static documents</li>
+          </ul>
+        </div>
+
+        <!-- Simulation & Proto -->
+        <div class="s15-card">
+          <div class="s15-card-title">🧪 Working Prototype</div>
+          <ul>
+            <li>Fully functional web app — tested with real entrepreneur activity logs</li>
+            <li>Voice input tested across Chrome, Edge, and mobile browsers</li>
+            <li>Dual-mode engine verified: online Claude + offline generation</li>
+          </ul>
+          <p style="margin-top:6px;font-family:var(--mono);color:var(--accent-teal);font-weight:600;font-size:0.65rem;">✅ LIVE DEMO AVAILABLE AT localhost:3001</p>
+        </div>
+
+        <!-- Innovation -->
+        <div class="s15-card">
+          <div class="s15-card-title">🚀 Innovation Highlights</div>
+          <ul>
+            <li><strong>Evolution Memory:</strong> Industry-first compounding advice system</li>
+            <li><strong>Hybrid AI:</strong> Graceful offline fallback — no connectivity dependency</li>
+            <li><strong>Voice-first:</strong> Kannada support bridges digital divide in Tier 2/3 India</li>
+            <li><strong>Zero-config:</strong> No database, no accounts — start coaching in 30 seconds</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="brilliance">BRILLIANCE@SCALE</span>
+      <div class="footer-line"></div>
+      <span class="slide-num">15</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+       SLIDE 16 — Major Risk And Mitigation
+  ══════════════════════════════════════════════════════════════════════════════ -->
+  <div class="slide-label">Slide 16</div>
+  <div class="slide" id="slide-16">
+    <div class="slide-header">
+      <div class="logo-group">
+        <div class="eureka-logo">
+          <div class="bulb">
+            <svg viewBox="0 0 40 40" fill="none">
+              <path d="M20 4C13.4 4 8 9.4 8 16c0 4.2 2.2 7.9 5.5 10 .5.3.5.8.5 1.3V30c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-2.7c0-.5 0-1 .5-1.3C29.8 23.9 32 20.2 32 16c0-6.6-5.4-12-12-12z" fill="#2ecc40"/>
+              <rect x="15" y="32" width="10" height="2" rx="1" fill="#2ecc40"/>
+              <rect x="16" y="35" width="8" height="2" rx="1" fill="#2ecc40"/>
+              <line x1="20" y1="10" x2="20" y2="16" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="14" y1="14" x2="17" y2="17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="26" y1="14" x2="23" y2="17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="eureka-text">
+            <span class="varroc">VARROC</span>
+            <span class="eureka">eureka</span>
+            <span class="challenge">CHALLENGE</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide-title">Major Risk And Mitigation</div>
+      <div class="varroc-v">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="20" fill="#111"/>
+          <path d="M10 12L20 30L30 12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M28 10C30 10 32 12 32 14" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="slide-content">
+      <div class="s16-layout">
+
+        <!-- Risk 1 -->
+        <div class="s16-row">
+          <div class="s16-risk">
+            <div class="s16-risk-label">
+              ⚠️ RISK 1 <span class="s16-badge high">HIGH</span>
+            </div>
+            <p><strong>API Dependency & Cost:</strong> Claude AI API has per-token costs and may face rate limits or outages, blocking core functionality during scaling.</p>
+          </div>
+          <div class="s16-arrow">→</div>
+          <div class="s16-mitigate">
+            <div class="s16-mitigate-label">✅ MITIGATION</div>
+            <p><strong>Built-in Offline Engine:</strong> 34-module curated coaching bank with deterministic selection — app generates quality plans with zero API calls. Hybrid architecture switches seamlessly between modes.</p>
+          </div>
+        </div>
+
+        <!-- Risk 2 -->
+        <div class="s16-row">
+          <div class="s16-risk">
+            <div class="s16-risk-label">
+              ⚠️ RISK 2 <span class="s16-badge high">HIGH</span>
+            </div>
+            <p><strong>User Retention:</strong> Entrepreneurs may lose motivation and stop daily input after initial excitement, reducing the evolution memory value.</p>
+          </div>
+          <div class="s16-arrow">→</div>
+          <div class="s16-mitigate">
+            <div class="s16-mitigate-label">✅ MITIGATION</div>
+            <p><strong>Streak Gamification + Timeline:</strong> Day counter, evolution history, and visual timeline create accountability. Push notifications and weekly summaries planned for v2.</p>
+          </div>
+        </div>
+
+        <!-- Risk 3 -->
+        <div class="s16-row">
+          <div class="s16-risk">
+            <div class="s16-risk-label">
+              ⚠️ RISK 3 <span class="s16-badge med">MEDIUM</span>
+            </div>
+            <p><strong>Data Privacy:</strong> Sensitive business activity data stored in localStorage could be vulnerable on shared devices.</p>
+          </div>
+          <div class="s16-arrow">→</div>
+          <div class="s16-mitigate">
+            <div class="s16-mitigate-label">✅ MITIGATION</div>
+            <p><strong>Client-Side Only + Encryption:</strong> No server storage of user data. API key never exposed to frontend. v2 roadmap includes AES encryption for localStorage + optional cloud sync with auth.</p>
+          </div>
+        </div>
+
+        <!-- Risk 4 -->
+        <div class="s16-row">
+          <div class="s16-risk">
+            <div class="s16-risk-label">
+              ⚠️ RISK 4 <span class="s16-badge med">MEDIUM</span>
+            </div>
+            <p><strong>Voice Recognition Accuracy:</strong> Kannada speech-to-text has lower accuracy in noisy environments or with diverse dialects.</p>
+          </div>
+          <div class="s16-arrow">→</div>
+          <div class="s16-mitigate">
+            <div class="s16-mitigate-label">✅ MITIGATION</div>
+            <p><strong>Hybrid Input + Editable Text:</strong> Voice transcript appends to editable textarea — users can correct before generating. Planned: train custom speech model on regional business vocabulary.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="brilliance">BRILLIANCE@SCALE</span>
+      <div class="footer-line"></div>
+      <span class="slide-num">16</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+       SLIDE 17 — Business Potential
+  ══════════════════════════════════════════════════════════════════════════════ -->
+  <div class="slide-label">Slide 17</div>
+  <div class="slide" id="slide-17">
+    <div class="slide-header">
+      <div class="logo-group">
+        <div class="eureka-logo">
+          <div class="bulb">
+            <svg viewBox="0 0 40 40" fill="none">
+              <path d="M20 4C13.4 4 8 9.4 8 16c0 4.2 2.2 7.9 5.5 10 .5.3.5.8.5 1.3V30c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-2.7c0-.5 0-1 .5-1.3C29.8 23.9 32 20.2 32 16c0-6.6-5.4-12-12-12z" fill="#2ecc40"/>
+              <rect x="15" y="32" width="10" height="2" rx="1" fill="#2ecc40"/>
+              <rect x="16" y="35" width="8" height="2" rx="1" fill="#2ecc40"/>
+              <line x1="20" y1="10" x2="20" y2="16" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="14" y1="14" x2="17" y2="17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="26" y1="14" x2="23" y2="17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="eureka-text">
+            <span class="varroc">VARROC</span>
+            <span class="eureka">eureka</span>
+            <span class="challenge">CHALLENGE</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide-title">Business Potential</div>
+      <div class="varroc-v">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="20" fill="#111"/>
+          <path d="M10 12L20 30L30 12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M28 10C30 10 32 12 32 14" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="slide-content">
+      <div class="s17-layout">
+        <div class="s17-left">
+          <div class="s17-market-card">
+            <h3>🌍 Addressable Market</h3>
+            <div class="s17-market-stats">
+              <div class="s17-stat-item">
+                <div class="s17-stat-val">63M</div>
+                <div class="s17-stat-desc">MSMEs IN INDIA</div>
+              </div>
+              <div class="s17-stat-item">
+                <div class="s17-stat-val">$15.4B</div>
+                <div class="s17-stat-desc">AI COACHING MARKET<br>(2028 PROJECTED)</div>
+              </div>
+              <div class="s17-stat-item">
+                <div class="s17-stat-val">42%</div>
+                <div class="s17-stat-desc">CAGR AI-COACHING<br>SEGMENT</div>
+              </div>
+              <div class="s17-stat-item">
+                <div class="s17-stat-val">97%</div>
+                <div class="s17-stat-desc">SMEs WITHOUT<br>BUSINESS COACH</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="s17-demand-card">
+            <h3>📈 Market Demand Signals</h3>
+            <ul class="s17-demand-list">
+              <li><div class="dot"></div> India's MSME sector contributes 30% to GDP — yet most lack strategic planning tools</li>
+              <li><div class="dot"></div> "Business coaching" search volume up 340% on Google India (2023–2025)</li>
+              <li><div class="dot"></div> 84% of first-generation entrepreneurs operate without any structured daily plan</li>
+              <li><div class="dot"></div> Regional language digital adoption growing 3× faster than English in Tier 2/3</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="s17-right">
+          <div class="s17-revenue-card">
+            <h3>💰 Revenue Streams</h3>
+            <div class="s17-rev-streams">
+              <div class="s17-stream">
+                <div class="s17-stream-label">Freemium SaaS</div>
+                <div class="s17-bar-bg">
+                  <div class="s17-bar-fill" style="width:85%;background:var(--gradient-1);">85%</div>
+                </div>
+              </div>
+              <div class="s17-stream">
+                <div class="s17-stream-label">Enterprise API</div>
+                <div class="s17-bar-bg">
+                  <div class="s17-bar-fill" style="width:60%;background:var(--gradient-2);">60%</div>
+                </div>
+              </div>
+              <div class="s17-stream">
+                <div class="s17-stream-label">White-label</div>
+                <div class="s17-bar-bg">
+                  <div class="s17-bar-fill" style="width:45%;background:var(--gradient-4);">45%</div>
+                </div>
+              </div>
+              <div class="s17-stream">
+                <div class="s17-stream-label">Data Insights</div>
+                <div class="s17-bar-bg">
+                  <div class="s17-bar-fill" style="width:30%;background:var(--gradient-3);">30%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="s17-target-card">
+            <h3>🎯 Projected Targets</h3>
+            <div class="s17-targets">
+              <div class="s17-target-row">
+                <span class="s17-target-label">Year 1 — Users</span>
+                <span class="s17-target-val">10,000+</span>
+              </div>
+              <div class="s17-target-row">
+                <span class="s17-target-label">Year 1 — ARR</span>
+                <span class="s17-target-val">₹48L</span>
+              </div>
+              <div class="s17-target-row">
+                <span class="s17-target-label">Year 2 — Users</span>
+                <span class="s17-target-val">1,00,000+</span>
+              </div>
+              <div class="s17-target-row">
+                <span class="s17-target-label">Year 3 — ARR</span>
+                <span class="s17-target-val">₹5.2Cr</span>
+              </div>
+              <div class="s17-target-row">
+                <span class="s17-target-label">Break-even</span>
+                <span class="s17-target-val">Month 14</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="brilliance">BRILLIANCE@SCALE</span>
+      <div class="footer-line"></div>
+      <span class="slide-num">17</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════════
+       SLIDE 18 — Plan And Budget Needed
+  ══════════════════════════════════════════════════════════════════════════════ -->
+  <div class="slide-label">Slide 18</div>
+  <div class="slide" id="slide-18">
+    <div class="slide-header">
+      <div class="logo-group">
+        <div class="eureka-logo">
+          <div class="bulb">
+            <svg viewBox="0 0 40 40" fill="none">
+              <path d="M20 4C13.4 4 8 9.4 8 16c0 4.2 2.2 7.9 5.5 10 .5.3.5.8.5 1.3V30c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-2.7c0-.5 0-1 .5-1.3C29.8 23.9 32 20.2 32 16c0-6.6-5.4-12-12-12z" fill="#2ecc40"/>
+              <rect x="15" y="32" width="10" height="2" rx="1" fill="#2ecc40"/>
+              <rect x="16" y="35" width="8" height="2" rx="1" fill="#2ecc40"/>
+              <line x1="20" y1="10" x2="20" y2="16" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="14" y1="14" x2="17" y2="17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="26" y1="14" x2="23" y2="17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="eureka-text">
+            <span class="varroc">VARROC</span>
+            <span class="eureka">eureka</span>
+            <span class="challenge">CHALLENGE</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide-title">Plan And Budget Needed</div>
+      <div class="varroc-v">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="20" fill="#111"/>
+          <path d="M10 12L20 30L30 12" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M28 10C30 10 32 12 32 14" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="slide-content">
+      <div class="s18-layout">
+        <div class="s18-timeline">
+          <div class="s18-timeline-title">🗓 Major Milestones & Timeline</div>
+
+          <div class="s18-phase">
+            <div class="s18-phase-line">
+              <div class="s18-phase-dot"></div>
+              <div class="s18-phase-connector"></div>
+            </div>
+            <div class="s18-phase-content">
+              <div class="s18-phase-header">
+                <span class="s18-phase-name">Phase 1: MVP Launch</span>
+                <span class="s18-phase-time">Month 1–2</span>
+              </div>
+              <div class="s18-phase-desc">Core app with AI coaching engine, voice input, evolution memory, and day tracking. Deploy to production with user onboarding flow.</div>
+            </div>
+          </div>
+
+          <div class="s18-phase">
+            <div class="s18-phase-line">
+              <div class="s18-phase-dot"></div>
+              <div class="s18-phase-connector"></div>
+            </div>
+            <div class="s18-phase-content">
+              <div class="s18-phase-header">
+                <span class="s18-phase-name">Phase 2: Multi-language + Mobile</span>
+                <span class="s18-phase-time">Month 3–5</span>
+              </div>
+              <div class="s18-phase-desc">Add Hindi, Tamil, Telugu support. PWA for mobile install. Push notifications for daily reminders. User authentication.</div>
+            </div>
+          </div>
+
+          <div class="s18-phase">
+            <div class="s18-phase-line">
+              <div class="s18-phase-dot"></div>
+              <div class="s18-phase-connector"></div>
+            </div>
+            <div class="s18-phase-content">
+              <div class="s18-phase-header">
+                <span class="s18-phase-name">Phase 3: Analytics + Community</span>
+                <span class="s18-phase-time">Month 6–9</span>
+              </div>
+              <div class="s18-phase-desc">Business health dashboard, weekly/monthly progress reports, peer comparison, entrepreneur community features and mentorship matching.</div>
+            </div>
+          </div>
+
+          <div class="s18-phase">
+            <div class="s18-phase-line">
+              <div class="s18-phase-dot"></div>
+              <div class="s18-phase-connector"></div>
+            </div>
+            <div class="s18-phase-content">
+              <div class="s18-phase-header">
+                <span class="s18-phase-name">Phase 4: Scale + Monetize</span>
+                <span class="s18-phase-time">Month 10–12</span>
+              </div>
+              <div class="s18-phase-desc">Enterprise API, white-label partnerships with incubators, freemium pricing, integration with WhatsApp Business &amp; Tally.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="s18-right">
+          <div class="s18-budget-card">
+            <h3>💰 Prototype Budget</h3>
+            <div class="s18-budget-rows">
+              <div class="s18-budget-row">
+                <span class="s18-budget-item">Cloud Hosting (12 mo)</span>
+                <span class="s18-budget-cost">₹36,000</span>
+              </div>
+              <div class="s18-budget-row">
+                <span class="s18-budget-item">AI API Credits (Claude)</span>
+                <span class="s18-budget-cost">₹60,000</span>
+              </div>
+              <div class="s18-budget-row">
+                <span class="s18-budget-item">Domain + SSL + CDN</span>
+                <span class="s18-budget-cost">₹8,000</span>
+              </div>
+              <div class="s18-budget-row">
+                <span class="s18-budget-item">UI/UX Design Tools</span>
+                <span class="s18-budget-cost">₹12,000</span>
+              </div>
+              <div class="s18-budget-row">
+                <span class="s18-budget-item">Speech API (Kannada)</span>
+                <span class="s18-budget-cost">₹15,000</span>
+              </div>
+              <div class="s18-budget-row">
+                <span class="s18-budget-item">Testing + QA</span>
+                <span class="s18-budget-cost">₹9,000</span>
+              </div>
+              <div class="s18-budget-total">
+                <span>TOTAL BUDGET</span>
+                <span>₹1,40,000</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="s18-deliver-card">
+            <h3>📦 Key Deliverables</h3>
+            <ul class="s18-deliver-list">
+              <li><span class="check">✓</span> Fully functional web app with AI + offline engine</li>
+              <li><span class="check">✓</span> Multilingual voice input (EN, KN, HI)</li>
+              <li><span class="check">✓</span> Evolution timeline with persistent memory</li>
+              <li><span class="check">✓</span> PWA installable on any device</li>
+              <li><span class="check">✓</span> Documentation + API for enterprise use</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span class="brilliance">BRILLIANCE@SCALE</span>
+      <div class="footer-line"></div>
+      <span class="slide-num">18</span>
+    </div>
+  </div>
+
+</body>
+</html>
