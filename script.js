@@ -1,5 +1,5 @@
 // ─── Constants ────────────────────────────────────────────────────────────────
-const API_BASE = ""; // same origin
+const API_BASE = "https://v2v-7nn4.onrender.com";// same origin
 const STORAGE_KEY_DAY = "voice2venture_day";
 const STORAGE_KEY_LAST = "voice2venture_last_output";
 const STORAGE_KEY_HISTORY = "voice2venture_history";
